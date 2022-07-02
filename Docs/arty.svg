@@ -1,0 +1,5 @@
+<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(32,32)">
+<polygon transform="translate(0,-4)" fill="blue" points="-22,18 0,-18 22,18 0,3" />
+</g>
+</svg>

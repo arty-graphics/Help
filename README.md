@@ -1,2 +1,5 @@
 # Help
-Tutorial, documentation, gallery
+
+Arty tutorial, documentation, gallery.
+
+https://arty.graphics
