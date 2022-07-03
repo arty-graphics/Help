@@ -89,3 +89,25 @@ d n do dup sq d add 543 n div left loop)))
 :l (a) a 180 sub q div abs 1 sub r mul;
 :g (a) home 0 pen a left r go a t right 1 pen a l go;
 n do 360 n 1 sub div cnt mul g loop)))
+
+(((Hilbert curve|help/Gallery/hilbert.png
+|:s 8; :g s go;
+:l (a) a lf; :r (a) a rg;
+:Y (x a) x 1 sub a X;
+:X (x a)
+  x 0 le if a a a a l g r g r g l end then
+  a x a a x a x a a x a a
+  l neg Y g r Y g Y r g neg Y l
+;
+
+3 90 X)))
+
+(((Flower|help/Gallery/flower.png
+|0 pen -200 go 90 right -150 go 90 left 1 pen
+:m 2 do 9 do 5 go 10 rg 5 go loop 90 rg loop ;
+#00b color 2 do 400 go 90 right 300 go 90 right loop
+0 pen 90 rg 150 go 90 lf 30 go 2 pen
+#0f0 color
+m 90 lf m
+90 rg 200 go #f00 color
+10 do m 36 rg loop 0 marker)))

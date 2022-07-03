@@ -1,13 +1,13 @@
 # Lesson 3
 
-In this lesson we shall learn how to do basic arithmetic -- that is, how to work with numbers.
+In this lesson we shall learn how to do basic arithmetic -- how to work with numbers.
 
 ## Forth with Reverse Polish Logic
 
 Arty's language is based on the ((Forth|https://en.wikipedia.org/wiki/Forth_(programming_language))) programming language.
-Forth is a //stack-based// language; it uses stack as its primary storage. Stack is a LIFO/FILO data structure and reverses the order of data. For arithmetic operations done with the help of a stack, it is practical to use ((Reverse Polish notation (RPN)|https://en.wikipedia.org/wiki/Reverse_Polish_notation)), also called __Reverse Polish Logic__ or __postfix__ notation.
+Forth is a //stack-based// language; it uses stack as its primary storage. Stack is a LIFO data structure and reverses the order of data. For arithmetic operations done with the help of a stack, it is practical to use ((Reverse Polish notation (RPN)|https://en.wikipedia.org/wiki/Reverse_Polish_notation)), also called __Reverse Polish Logic__ or __postfix__ notation.
 
-For example, to add two numbers 1 and 2 in RPN, we would write "**1 2 +**" instead of the usual "**1 + 2**".
+For example, to add two numbers 1 and 2 in RPN, we would write "**1 2 +**" instead of the more common "**1 + 2**".
 
 ## add, sub, mul, div, neg
 
@@ -15,13 +15,16 @@ Arty knows these codewords that work with numbers:
 * ~~add~~ adds two numbers
 * ~~sub~~ subtracts one number from another
 * ~~mul~~ multiplies two numbers
-* ~~div~~ divides two numbers, and
-* ~~neg~~ negates a number.
+* ~~div~~ divides two numbers,
+* ~~mod~~ calculates the remainder,
+* ~~neg~~ negates a number,
+* ~~abs~~ calculates the absolute value,
+* ~~sqrt~~ calculates the square root.
 
 ## add
 
 To add two numbers, put them on the stack and call ~~add~~. The two numbers will
-be taken from the stack and their sum will be put back onto the stack.
+be taken from the stack and their sum put back onto the stack.
 
 (((show me||1 2 add)))
 
@@ -80,7 +83,7 @@ Now we know all that we need to (((draw a spiral|
 loop
 )))
 
-We make the spiral-drawing program more user-friendly, by extracting the various parameters, giving them human-readable names, and putting them at the beginning of the program.
+To make the spiral-drawing program more user-friendly (more readable and easier to understand), extract the various parameters, give them better names, and move them to the beginning of the program.
 
 (((show me|
 |:numSegments 180;
@@ -92,7 +95,7 @@ We make the spiral-drawing program more user-friendly, by extracting the various
   growSegment add
 loop)))
 
-And now we can easily **experiment** with different parameter values.
+Now we can easily **experiment** with different parameter values:
 
 (((1||:numSegments 360;
 :turnAngle   60;
@@ -126,7 +129,7 @@ loop)))
 
 # drop
 
-~~drop~~ simply takes one number off of the stack and discards it. It is a counterpart of ~~dup~~. In the spiral-drawing program above we started with putting a number ~~0~~ on the stack. After the program had finished, there still remained one number on the stack. To make the program "clean after itself", we ~~drop~~ the number.
+~~drop~~ simply takes one number off of the stack and discards it. It is a counterpart of ~~dup~~. In the spiral-drawing program above we started with putting a number ~~0~~ on the stack. After the program had finished, there still remained one number on the stack. To make the program "clean after itself", we ~~drop~~ the remaining number.
 
 (((show me||:numSegments 120;
 :turnAngle   61;

@@ -2,11 +2,11 @@
 
 In this lesson we explore ((recursion|https://en.wikipedia.org/wiki/Recursion)).We shall use it to draw a tree.
 
-First, we introduce new features: how to compare numbers, how to run code conditionally, and how to return early from a word definition.
+First, let us introduce new features: how to compare numbers, how to run code //conditionally//, and how to //return// early from a word definition.
 
 ## eq, ne, lt, le, gt, ge
 
-These are the keywords that compare two numbers. Each takes two numbers from the stack, compares them and then puts the result back onto the stack: it is either ~~1~~, if the comparison has been successful (true), or ~~0~~, if it was false.
+These are keywords that //compare// two numbers. Each takes two numbers from the stack, compares them and then puts the result back onto the stack: the result is either ~~1~~, if the comparison has been successful (true), or ~~0~~, if it was false.
 
 * ~~eq~~ checks if two numbers are equal (=)
 * ~~ne~~ checks if two numbers are //not// equal (≠)
@@ -32,23 +32,23 @@ These are the keywords that compare two numbers. Each takes two numbers from the
 
 ## if .. then
 
-Code that is between the codewords ~~if~~ and ~~then~~ is run //conditionally//. That means that it depends on a condition, which can be false or true. If the condition is false, then the code skipped over. If it is true, it is run.
+Code that is between the codewords ~~if~~ and ~~then~~ will be run //conditionally//. It means that it depends on a condition, which can be false or true. If the condition is false, then the code skipped over. If the condition is true, the code will be run.
 
-~~if~~ takes a number from the stack. Zero means false, non-zero is true.
+~~if~~ takes a number from the stack. Zero means //false//, non-zero //true//.
 
 (((false condition||0 if 40 go then)))
 (((true condition||1 if 40 go then)))
 
 ## if .. else .. then
 
-A conditionally executed code may have two branches: if the condition is true resp. false, then the first branch (between ~~if~~ and ~~else~~) resp. the second branch (between ~~else~~ and ~~then~~) is run.
+A conditionally executed code may have two //branches//: if the condition is true resp. false, then the first branch (between ~~if~~ and ~~else~~) resp. the second branch (between ~~else~~ and ~~then~~) will be run.
 
 (((false condition||0 if 40 else 80 then go)))
 (((true condition||1 if 40 else 80 then go)))
 
 ## end
 
-The keyword ~~end~~ immediately ends the current word and returns from it "early".
+The keyword ~~end~~ ends the current word immediately and returns from it "early".
 
 (((show me|
 |:early 20 go end 90 right;
@@ -56,22 +56,22 @@ early)))
 
 We shall use ~~end~~ in connection with ~~if~~..~~then~~.
 
-# Tree
+# grow a tree
 
-Trees are self-similar, recursive structures. That is, smaller parts of a tree themselves resemble (have a shape similar to) smaller trees.
+Trees are "self-similar", //recursive structures//. That is, smaller parts of a tree themselves resemble (have a shape similar to) smaller trees.
 
-Below are incremental steps that lead toward painting a tree.
+We will now take incremental steps leading up to painting a tree.
 
-First, we write a definition of the word ~~tree~~ that shall, eventually, draw a tree. It expects one number to determine how big the tree should be. The number stays on the stack after ~~tree~~ has finished.
+Let us begin with a definition of the word ~~tree~~. It expects one number to determine how big the tree should be. The number should stay on the stack even when ~~tree~~ has finished.
 
-This first iteration of ~~tree~~ only draws only a short line. It is the first segment of the tree, its trunk. From the trunk should then grow other segments: the branches, twigs, and leaves of the tree:
+This first iteration of ~~tree~~ only draws only a short line. It is the first segment of the tree, its trunk. From the trunk will leater grow other segments: the branches, twigs, and leaves of the tree:
 (((1|
-|:tree dup go;
+|:tree dup go; [dup copies the number]
 60 [tree size]
 tree
 drop [cleanup])))
 
-Notice that ~~tree~~ not only does not change the contents of the stack, it also returns Arty where he has been before that:
+Notice that ~~tree~~ not only does not change the contents of the stack (it uses dup to copy the numbers it needs), it also returns Arty where he has been before:
 (((2|
 |:tree
   dup go [go ahead]
@@ -94,7 +94,7 @@ At the end of the segment, Arty turns left (where the next segment shall be), th
 
 60 tree drop)))
 
-The next segments of the tree should be shorter. We prepare a "shrunk" copy of the original number on the stack, do the turning around, drop the copy of the number (it is important to always clean after ourselves) and return:
+Each next segments of the tree should be shorter than the one before. We prepare a "shrunk" copy of the original number on the stack, do the turning around, drop the copy of the number (it is important to always clean after onself) and return:
 (((4|
 |:a 30;
 :sf 2 3 div; [shrink factor, 2/3]
@@ -111,7 +111,7 @@ The next segments of the tree should be shorter. We prepare a "shrunk" copy of t
 
 60 tree drop)))
 
-And now comes **The Magic Moment**. At the end of the segment, as Arty looks left, right, and back in the middle, we call the word ~~tree~~ //recursively//:
+And now comes **The Magic Moment**. At the end of the segment, as Arty looks left, right, and back in the middle, we shall call the word ~~tree~~ //recursively//:
 (((5|
 |:a 30;
 :sf 2 3 div;
@@ -119,8 +119,8 @@ And now comes **The Magic Moment**. At the end of the segment, as Arty looks lef
 :tree
   dup go
   dup sf mul
-  a left tree [recursion]
-  a 2 mul right tree [recursion]
+  a left tree [recursion!]
+  a 2 mul right tree [recursion!]
   a left
   drop
   dup neg go
@@ -128,14 +128,14 @@ And now comes **The Magic Moment**. At the end of the segment, as Arty looks lef
 
 60 tree drop)))
 
-But it did not work. This was an uncontrolled, //infinite// recursion. Properly working recursion must eventually end. We shall do it, when the length of the next layer of tree segments becomes too short:
+But it did not work. This was an uncontrolled, //infinite// recursion. Properly working recursion must end, eventually. We will end it when the length of the tree segment becomes too short:
 (((6|
 |:a 30;
 :sf 2 3 div;
 :shortest 10; [the limit of the segment length]
 
 :tree
-  [if shorter than shortest, return early]
+  [if shorter than \'shortest\', return early]
   dup shortest lt if end then
   [otherwise continue]
   dup go
@@ -149,9 +149,9 @@ But it did not work. This was an uncontrolled, //infinite// recursion. Properly 
 
 60 tree drop)))
 
-Voilà!
+Et voilà!
 
-But the tree is very symmetric and wiry. In nature, especially where the wind blows, trees lean in the prevailing direction of the wind, and the trunk is usually thicker than branches. We also make the tree denser by adding a middle branch:
+But the tree is very symmetric and wiry. In nature, especially where the wind blows, trees lean in the prevailing wind direction and also the trunks are usually thicker than branches. We will also make the tree denser by adding a middle branch:
 (((7|
 |:a 30;
 :lean 15;
@@ -176,7 +176,7 @@ But the tree is very symmetric and wiry. In nature, especially where the wind bl
 
 Wow! A tree at night.
 
-Last, let us add colours and bend the trunk and branches a little:
+Lastly, let us add colours and bend the trunk and branches a little:
 (((8|
 |:a 40;
 :lean 15;

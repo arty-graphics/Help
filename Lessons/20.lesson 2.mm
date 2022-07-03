@@ -20,9 +20,8 @@ the trail will be thinner or thicker based on the size of the number.
 ## color
 
 The codeword ~~color~~ controls the colour of Arty's pen.
-It also needs one number. Parts of the number are interpreted
-as the values of the red, green and blue ("rgb") components of the colour.
-It is handy to write such numbers in __hexadecimal__ notation:
+It also needs one number. The number is interpreted as a combination of the red, green and blue ("rgb") components of the colour.
+It is handy and common to write such numbers in __hexadecimal__ notation:
 
 * ~~#000~~ black
 * ~~#f00~~ red
@@ -49,9 +48,9 @@ It is handy to write such numbers in __hexadecimal__ notation:
 Any text that is writen between square brackets (~~[~~ and ~~]~~) is
 a __comment__. Comments are meant for humans. Arty ignores them.
 
-Comments may be very useful in explaining what the program does.
+Comments are useful to explain what the program does.
 
-(((show me||[let us turn right...] 90 right [... and make a step] 60 go)))
+(((show me||[let us turn right...] 90 right [... and go ahead] 60 go)))
 
 ## greenhouse
 
@@ -63,7 +62,7 @@ Comments may be very useful in explaining what the program does.
 [inside] 135 right 140 go 135 left 100 go 135 left 140 go
 )))
 
-## squares within a square
+## squares in a square
 
 Draw four squares arranged in a square.
 
@@ -88,16 +87,16 @@ sqsq)))
 
 ## do .. loop
 
-Have you noticed how many times we had to repeat the same piece of code in the last program? If that happens, we may write a "do loop" instead. That way we can easily indicate that a piece of code should be repeated several times.
+Have you noticed how we had to repeat the same piece of code in the last program? When that happens, we should write a "do loop" instead. That way we can easily express that the same piece of code should be repeated several times.
 
-The "do loop" begins with a number which indicates how many times the loop should be repeated), followed by the codeword ~~do~~, then the repeated piece of code, and finally by the codeword ~~loop~~ that "loops" back to ~~do~~.
+The "do loop" starts with a number which indicates how many times the loop should be repeated ("the repetition count"), followed by the codeword ~~do~~, then the piece of code to be repeated, and ends with the codeword ~~loop~~ that "loops" back to ~~do~~.
 
 (((show me|
 |4 do 40 go 90 right loop)))
 
-## squares within a square, again
+## squares in a square, again
 
-Let us draw again the four squares arranged in a square, but this time do it smarter.
+Let us draw the four squares arranged in a square again, but this time do it smarter.
 
 (((show me|
 |[Draw a small square.]
@@ -127,12 +126,15 @@ call the do-loop that will use one colour after another.
 
 sqsq)))
 
+## cnt
+
+~~cnt~~ places the current loop count onto the number stack.
+
 ## marker
 
-The marker (the blue arrow) that shows the position and orientation of Arty
-can be switched off and on by the keyword ~~marker~~. It needs one number.
-Zero number switches the marker off, and a non-zero number, either positive or negative,
-switches the marker back on.
+The blue-arrow marker that shows the position and orientation of Arty
+can be switched off and on using the keyword ~~marker~~. It needs one number.
+Zero switches the marker off, and a non-zero number, either positive or negative, switches the marker back on.
 
 (((show me|
 |40 go
@@ -141,7 +143,7 @@ switches the marker back on.
 
 ## a taste of things to come
 
-And finally, here is something more interesting:
+And finally, here is again something more interesting:
 
 (((show me|
 |:star 2 pen 5 do 15 right 16 go 60 right 16 go 147 left loop 0 pen;
