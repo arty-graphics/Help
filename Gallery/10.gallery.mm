@@ -43,16 +43,16 @@ dup 40 lt if #854 color end then [longer are light brown]
     a lean sub left
     bend left
   drop
-  dup neg 0 pen go
+  dup neg pu go
 ;
 
-0 pen -120 go
+pu -120 go
 80 tree drop)))
 
 (((Ball|help/Gallery/ball.png
 |:size 140;:n 21;
 
-:l 90 left;:g 0 pen go 1 pen;:s2 size 2 div;
+:l 90 left;:g pu go pd;:s2 size 2 div;
 :circle dup g l dup 360 arc l dup g l l;
 
 size circle
@@ -69,7 +69,7 @@ d n do dup sq d add 543 n div left loop)))
 :K (d n) d n k l1 d n k r2 d n k l1 d n k;
 :f (n d) d c d n K r2 d n K r2 d n K r2;
 :l1 60 left; :r2 120 right;
-:c (d) home 0 pen d 1.5 mul neg go 90 left d 0.87 mul go 90 right 1 pen;
+:c (d) home pu d 1.5 mul neg go 90 left d 0.87 mul go 90 right pd;
 4 do cnt dup 30 mul f loop)))
 
 (((Sierpinski triangles|help/Gallery/sierpinski.png
@@ -87,7 +87,7 @@ d n do dup sq d add 543 n div left loop)))
 |:r 90;:n 170;:q 30;
 :t (a) a 2 div 3 mul 90 add;
 :l (a) a 180 sub q div abs 1 sub r mul;
-:g (a) home 0 pen a left r go a t right 1 pen a l go;
+:g (a) home pu a left r go a t right pd a l go;
 n do 360 n 1 sub div cnt mul g loop)))
 
 (((Hilbert curve|help/Gallery/hilbert.png
@@ -103,10 +103,10 @@ n do 360 n 1 sub div cnt mul g loop)))
 3 90 X)))
 
 (((Flower|help/Gallery/flower.png
-|0 pen -200 go 90 right -150 go 90 left 1 pen
+|pu -200 go 90 right -150 go 90 left 1 pen
 :m 2 do 9 do 5 go 10 rg 5 go loop 90 rg loop ;
 #00b color 2 do 400 go 90 right 300 go 90 right loop
-0 pen 90 rg 150 go 90 lf 30 go 2 pen
+pu 90 rg 150 go 90 lf 30 go 2 pen
 #0f0 color
 m 90 lf m
 90 rg 200 go #f00 color

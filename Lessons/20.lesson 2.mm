@@ -4,6 +4,11 @@ In this lesson we shall learn to control Arty's pen.
 
 ## pen
 
+Arty can lift the pen up from the canvas (~~pu~~) and put it back down (~~pd~~).
+
+(((show me|
+|10 go pu 10 go pd 10 go pu 10 go pd 10 go)))
+
 The codeword ~~pen~~ controls the width (thickness) of Arty's pen.
 It needs one number. If the number is not positive (if it is zero or
 less than zero), the pen will leave no trail. If the number is positive,
@@ -16,6 +21,11 @@ the trail will be thinner or thicker based on the size of the number.
 2 pen 40 go
 4 pen 40 go
 8 pen 40 go)))
+
+If the set width of Arty's pen is 0 (or less), Arty lifts the pen up. If the width is greater than 0, Arty puts the pen down.
+
+(((show me|
+|10 go pu 10 go 1 pen 10 go -1 pen 10 go)))
 
 ## color
 
@@ -77,10 +87,10 @@ Draw four squares arranged in a square.
 
 [Draw a square of squares. Each square has a different colour.]
 :sqsq
-  #000 color 2 pen sq 0 pen 60 go 90 right
-  #f00 color 2 pen sq 0 pen 60 go 90 right
-  #0f0 color 2 pen sq 0 pen 60 go 90 right
-  #00f color 2 pen sq 0 pen 60 go 90 right
+  #000 color 2 pen sq pu 60 go 90 right
+  #f00 color 2 pen sq pu 60 go 90 right
+  #0f0 color 2 pen sq pu 60 go 90 right
+  #00f color 2 pen sq pu 60 go 90 right
 ;
 
 sqsq)))
@@ -103,7 +113,7 @@ Let us draw the four squares arranged in a square again, but this time do it sma
 :sq 4 do 20 go 90 right loop;
 
 [Draw a square of coloured squares.]
-:colsq color 2 pen sq 0 pen 60 go 90 right;
+:colsq color 2 pen sq pu 60 go 90 right;
 :sqsq
   #000 colsq
   #f00 colsq
@@ -121,7 +131,7 @@ call the do-loop that will use one colour after another.
 :sq 4 do 20 go 90 right loop;
 
 [Draw a square of coloured squares.]
-:colsq color 2 pen sq 0 pen 60 go 90 right;
+:colsq color 2 pen sq pu 60 go 90 right;
 :sqsq #00f #0f0 #f00 #000 4 do colsq loop;
 
 sqsq)))
@@ -146,7 +156,7 @@ Zero switches the marker off, and a non-zero number, either positive or negative
 And finally, here is again something more interesting:
 
 (((show me|
-|:star 2 pen 5 do 15 right 16 go 60 right 16 go 147 left loop 0 pen;
+|:star 2 pen 5 do 15 right 16 go 60 right 16 go 147 left loop pu;
 
 :stars [five rows of stars]
   [starting position]
@@ -159,7 +169,7 @@ And finally, here is again something more interesting:
   loop
 ;
 
-0 pen
+pu
 [red stars]
 home #f00 color stars
 [green stars]

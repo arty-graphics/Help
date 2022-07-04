@@ -204,10 +204,10 @@ dup 40 lt if #854 color end then [longer are light brown]
     a lean sub left
     bend left
   drop
-  dup neg 0 pen go
+  dup neg pu go
 ;
 
-0 pen -120 go
+pu -120 go
 80 tree drop)))
 
 All done for now.
